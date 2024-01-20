@@ -1,3 +1,4 @@
+import 'package:educational_app/course_Screen.dart';
 import 'package:flutter/material.dart';
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -34,6 +35,33 @@ class _HomeState extends State<Home> {
     Icon(Icons.emoji_events,size: 30,color: Colors.white)
 
   ];
+  List <Image> imglist=[
+    Image(
+        image: NetworkImage("https://static-00.iconduck.com/assets.00/flutter-icon-826x1024-4ksxnd3g.png")),
+    Image(
+        image: NetworkImage("https://static-00.iconduck.com/assets.00/brand-react-native-icon-256x232-2upxny7h.png")),
+    Image(
+        image: NetworkImage("https://static-00.iconduck.com/assets.00/c-icon-228x256-9y3563zi.png")),
+    Image(
+        image: NetworkImage("https://static-00.iconduck.com/assets.00/python-icon-512x509-pyuo2h5v.png")),
+    Image(
+        image: NetworkImage("https://static-00.iconduck.com/assets.00/java-icon-378x512-w60vlu77.png")),
+    Image(
+        image: NetworkImage("https://static-00.iconduck.com/assets.00/c-sharp-c-icon-1822x2048-wuf3ijab.png")),
+
+
+
+
+  ];
+  List imgname=[
+    "Flutter",
+    "React Native",
+    "C++",
+    "python",
+    "Java",
+    "C#",
+
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +90,7 @@ class _HomeState extends State<Home> {
              Column(
                 children: [
                   Text("Hi Programmer",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,color: Colors.white),),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 5,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Container(
@@ -110,14 +138,67 @@ class _HomeState extends State<Home> {
 
 
               ),
-
               Container(
                 child: Text( catName[index],style: TextStyle(fontSize:16,fontWeight: FontWeight.bold
                 ),),
-              )
+              ),
 
             ],);
-          })
+          }),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Courses",style: TextStyle(fontWeight:FontWeight.bold,fontSize: 30),),
+                Text("See all",style: TextStyle(fontWeight:FontWeight.normal,fontSize: 20),),
+              ],
+            ),
+
+          ),
+         GridView.builder(
+           itemCount: imglist.length,
+             shrinkWrap: true,
+
+             physics: NeverScrollableScrollPhysics(),
+             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+
+           crossAxisCount: 2,
+           mainAxisSpacing: 10,
+           crossAxisSpacing: 10,
+              // childAspectRatio: 1.1,
+          childAspectRatio: (MediaQuery.of(context).size.height-50-25)/(3*240)
+         ), itemBuilder: (context,index){
+               return Padding(
+                 padding: const EdgeInsets.symmetric(horizontal: 10 ),
+                 child: InkWell(
+                   onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>Course_Screen())),
+                   child: Container(
+                     // width: 40,
+                     // height: 60,
+                     child: Padding(
+                       padding: const EdgeInsets.only(left: 58.0,right: 58,top: 50),
+                       child: Column(
+                         children: [
+                           imglist[index],
+                           SizedBox(height: 10,),
+                           Text(imgname[index],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,),)
+                   
+                         ],
+                       ),
+                     ),
+                   
+                     decoration: BoxDecoration(
+                       color: Colors.grey.withOpacity(.2),
+                       borderRadius: BorderRadius.circular(40),
+                     ),
+                   
+                   ),
+                 ),
+               );
+
+         }),
+
 
         ],
 
